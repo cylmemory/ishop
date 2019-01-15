@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'apps.goods.apps.GoodsConfig',
     'apps.trade.apps.TradeConfig',
     'apps.operates.apps.OperatesConfig',
+    'crispy_forms',
+    'xadmin',
 
 ]
 

@@ -17,9 +17,13 @@ import xadmin
 from django.urls import path
 from ishop.settings import MEDIA_ROOT
 from django.views.static import serve
+from rest_framework.documentation import include_docs_urls
 
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
     path('media/<path:path>', serve, {'document_root': MEDIA_ROOT }),
+
+    # doc
+    path('docs/', include_docs_urls(title="online shop"))
 
 ]

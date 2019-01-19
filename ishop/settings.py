@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'apps.operates.apps.OperatesConfig',
     'crispy_forms',
     'xadmin',
+    'rest_framework'
 
 ]
 

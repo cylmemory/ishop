@@ -15,7 +15,11 @@ Including another URLconf
 """
 import xadmin
 from django.urls import path
+from ishop.settings import MEDIA_ROOT
+from django.views.static import serve
 
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
+    path('media/<path:path>', serve, {'document_root': MEDIA_ROOT }),
+
 ]

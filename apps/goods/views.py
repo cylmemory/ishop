@@ -1,15 +1,24 @@
 from django.shortcuts import render
 
-from .serializers import GoodsSerializer
+
 from rest_framework import generics
 from rest_framework import mixins
-from .models import Goods
+from .models import Goods, GoodsCategory
 from rest_framework.pagination import PageNumberPagination
 
 from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
 from .filters import GoodsFilter
 from rest_framework import filters
+from .serializers import GoodsSerializer, CategorySerializer
+
+
+class CategoryViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
+    """
+    category list data
+    """
+    queryset = GoodsCategory.objects.filter(category_level=1)
+    serializer_class = CategorySerializer
 
 
 class GoodsPagination(PageNumberPagination):
@@ -18,7 +27,7 @@ class GoodsPagination(PageNumberPagination):
     """
     page_size = 10
     page_size_query_param = 'page_size'
-    page_query_param = 'p'
+    page_query_param = 'page'
     max_page_size = 100
 
 

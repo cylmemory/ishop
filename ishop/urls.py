@@ -19,12 +19,15 @@ from django.urls import include
 from ishop.settings import MEDIA_ROOT
 from django.views.static import serve
 from rest_framework.documentation import include_docs_urls
-from goods.views import GoodsListViewSet
+from goods.views import GoodsListViewSet, CategoryViewSet
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 
+# 商品的urls
 router.register(r'goods', GoodsListViewSet, base_name='Goods')
+# 商品类别的urls
+router.register(r'categories', CategoryViewSet, base_name='categories')
 
 # goods_list = GoodsListViewSet.as_view({
 #     'get': 'list'

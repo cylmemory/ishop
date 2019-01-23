@@ -56,7 +56,7 @@ class Goods(models.Model):
     """
     good_lot_no = models.CharField(max_length=50, default="", verbose_name="商品货号")
     name = models.CharField(max_length=100, verbose_name="商品名")
-    category = models.ForeignKey(GoodsCategory, verbose_name="商品分类",on_delete=models.CASCADE)
+    category = models.ForeignKey(GoodsCategory, verbose_name="商品分类", on_delete=models.CASCADE)
     click_num = models.IntegerField(default=0, verbose_name="点击数")
     sold_num = models.IntegerField(default=0, verbose_name="销量")
     col_num = models.IntegerField(default=0, verbose_name="收藏数")

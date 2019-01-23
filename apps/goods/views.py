@@ -25,7 +25,7 @@ class GoodsPagination(PageNumberPagination):
     """
     pagination
     """
-    page_size = 10
+    page_size = 12
     page_size_query_param = 'page_size'
     page_query_param = 'page'
     max_page_size = 100
@@ -38,11 +38,11 @@ class GoodsListViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     """
     serializer_class = GoodsSerializer
     pagination_class = GoodsPagination
-    queryset = Goods.objects.all()
+    queryset = Goods.objects.all().order_by("id")
     filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
     # filter_fields = ('name', 'sale_price')
     filter_class = GoodsFilter
     search_fields = ('name', 'goods_brief', 'goods_desc')
-    ordering_fields = ('sold_num', 'add_time')
+    ordering_fields = ('sold_num', 'sale_price')
     # def get_queryset(self):
     #     return Goods.objects.filter(sale_price__gt=100).order_by('id')

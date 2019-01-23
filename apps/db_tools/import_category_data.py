@@ -42,8 +42,8 @@ for level1_cat in row_data:
         # 三级分类
         for level3_cat in level2_cat["sub_categorys"]:
             category3 = GoodsCategory()
-            category3.name_en = level2_cat["code"]
-            category3.name = level2_cat["name"]
+            category3.name_en = level3_cat["code"]
+            category3.name = level3_cat["name"]
             category3.category_level = 3
             category3.parent_category = category2
             category3.save()

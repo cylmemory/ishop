@@ -21,6 +21,7 @@ from django.views.static import serve
 from rest_framework.documentation import include_docs_urls
 from goods.views import GoodsListViewSet, CategoryViewSet
 from rest_framework.routers import DefaultRouter
+from rest_framework.authtoken import views
 
 router = DefaultRouter()
 
@@ -41,4 +42,5 @@ urlpatterns = [
     # doc
     path('docs/', include_docs_urls(title="online shop")),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api-token-auth/', views.obtain_auth_token)
 ]

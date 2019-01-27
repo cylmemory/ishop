@@ -5,7 +5,7 @@ from _datetime import datetime, timedelta
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 
-from .models import VerifyMessage
+from users.models import VerifyMessage
 
 
 User = get_user_model()
@@ -33,4 +33,4 @@ class MsgSerializer(serializers.Serializer):
         if VerifyMessage.objects.filter(add_time__gt=add_time, mobile=mobile).count():
             raise serializers.ValidationError("距离上一次发送未超过60s")
 
-         return mobile
+        return mobile

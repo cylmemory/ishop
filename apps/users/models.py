@@ -14,8 +14,8 @@ class UserProfile(AbstractUser):
     email = models.CharField(max_length=100, null=True, blank=True, verbose_name="邮箱")
 
     class Meta:
-        verbose_name = "user"
-        verbose_name_plural = "users"
+        verbose_name = "用户"
+        verbose_name_plural = verbose_name
 
     def __str__(self):
         return self.username

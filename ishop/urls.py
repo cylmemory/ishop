@@ -22,6 +22,7 @@ from rest_framework.documentation import include_docs_urls
 from goods.views import GoodsListViewSet, CategoryViewSet
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken import views
+from rest_framework_jwt.views import obtain_jwt_token
 
 router = DefaultRouter()
 
@@ -41,6 +42,10 @@ urlpatterns = [
     path('', include(router.urls)),
     # doc
     path('docs/', include_docs_urls(title="online shop")),
+    # test api
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('api-token-auth/', views.obtain_auth_token)
+    # django rest framework Token authenticate model
+    path('api-token-auth/', views.obtain_auth_token),
+    # django rest framework json web token(jwt),
+    path('login/', obtain_jwt_token)
 ]

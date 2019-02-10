@@ -36,6 +36,15 @@ class MsgSerializer(serializers.Serializer):
         return mobile
 
 
+class UserDetailSerializer(serializers.ModelSerializer):
+    """
+    user detail serializer
+    """
+    class Meta:
+        model = User
+        fields = ('name', 'gender', 'birth', 'email', 'mobile')
+
+
 class UserRegSerializer(serializers.ModelSerializer):
     # write_only设置为True是为了不把code这个字段序列化
     code = serializers.CharField(required=True, write_only=True, max_length=4, min_length=4, label="验证码",

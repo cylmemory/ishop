@@ -15,7 +15,10 @@ from .serializers import GoodsSerializer, CategorySerializer
 
 class CategoryViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
     """
-    category list data
+    list:
+        category list data
+    retrieve:
+        get category details
     """
     queryset = GoodsCategory.objects.filter(category_level=1)
     serializer_class = CategorySerializer

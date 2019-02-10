@@ -19,11 +19,14 @@ from django.urls import include
 from ishop.settings import MEDIA_ROOT
 from django.views.static import serve
 from rest_framework.documentation import include_docs_urls
-from goods.views import GoodsListViewSet, CategoryViewSet
-from users.views import MsgCodeViewset, UserViewset
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken import views
 from rest_framework_jwt.views import obtain_jwt_token
+
+from goods.views import GoodsListViewSet, CategoryViewSet
+from users.views import MsgCodeViewset, UserViewset
+from operates.views import UserFavViewSet
+
 
 router = DefaultRouter()
 
@@ -37,6 +40,9 @@ router.register(r'codes', MsgCodeViewset, base_name='codes')
 
 # 用户注册
 router.register(r'users', UserViewset, base_name="users")
+
+# 用户收藏
+router.register(r'userfavs', UserFavViewSet, base_name='userfavs')
 
 # goods_list = GoodsListViewSet.as_view({
 #     'get': 'list'

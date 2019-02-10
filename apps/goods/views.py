@@ -32,7 +32,7 @@ class GoodsPagination(PageNumberPagination):
 
 
 # class GoodsListView(generics.ListAPIView), GenericView没有action(post,get)方法，所以还有继承ListModelMixin
-class GoodsListViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
+class GoodsListViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
     """
     List All Goods
     """

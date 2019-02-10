@@ -147,12 +147,13 @@ AUTHENTICATION_BACKENDS = (
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
 
     )
 }
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 import datetime
 # JWT参数设置

@@ -2,7 +2,7 @@
 from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth import get_user_model
 from django.db.models import Q
-from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin
+from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin, UpdateModelMixin
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status
@@ -72,7 +72,7 @@ class MsgCodeViewset(CreateModelMixin, viewsets.GenericViewSet):
             }, status.HTTP_201_CREATED)
 
 
-class UserViewset(CreateModelMixin, RetrieveModelMixin, viewsets.GenericViewSet):
+class UserViewset(CreateModelMixin, UpdateModelMixin, RetrieveModelMixin, viewsets.GenericViewSet):
     """
     用户注册
     """

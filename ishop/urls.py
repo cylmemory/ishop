@@ -26,7 +26,7 @@ from rest_framework_jwt.views import obtain_jwt_token
 from goods.views import GoodsListViewSet, CategoryViewSet
 from users.views import MsgCodeViewset, UserViewset
 from operates.views import UserFavViewSet, LeavingMessageViewSet, AddressManageViewSet
-
+from trade.views import ShoppingCartViewSet
 
 router = DefaultRouter()
 
@@ -49,6 +49,9 @@ router.register(r'messages', LeavingMessageViewSet, base_name='massages')
 
 # 配置收货地址
 router.register(r'address', AddressManageViewSet, base_name="address")
+
+# 购物车
+router.register(r'shopcarts', ShoppingCartViewSet, base_name='shopcarts')
 # goods_list = GoodsListViewSet.as_view({
 #     'get': 'list'
 # })

@@ -11,6 +11,7 @@ User = get_user_model()
 REGEX_MOBILE = "^1[358]\d{9}$|^147\d{8}$|^176\d{8}$"
 
 
+# serializers.Serializer是为了灵活性更强,不会报记录重复的错误
 class MsgSerializer(serializers.Serializer):
     """
     注册提交验证码序列化类

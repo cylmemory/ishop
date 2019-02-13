@@ -6,7 +6,6 @@ from .models import UserCollections, UserLeavingMessage, UserAddress
 from goods.serializers import GoodsSerializer
 
 
-
 class UserFavSerializer(serializers.ModelSerializer):
     """
     收藏功能序列化类

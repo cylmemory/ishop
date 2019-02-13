@@ -17,6 +17,7 @@ class ShoppingCart(models.Model):
     class Meta:
         verbose_name = '购物车'
         verbose_name_plural = verbose_name
+        # 联合唯一,也就是说加入相同货品进入购物车，只需增加数量,而不需要新增一笔记录
         unique_together = ("user", "goods")
 
     def __str__(self):

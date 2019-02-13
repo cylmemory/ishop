@@ -1,9 +1,10 @@
 # -*- coding:utf-8 -*-
-
+from random import Random
+import time
 from rest_framework import serializers
 
 from goods.models import Goods
-from trade.models import ShoppingCart
+from trade.models import ShoppingCart, OrderInfo, OrderGoods
 from goods.serializers import GoodsSerializer
 
 
@@ -56,3 +57,59 @@ class ShopCartDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = ShoppingCart
         fields = ('goods', 'nums')
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    """
+    订单序列化类
+    """
+    user = serializers.HiddenField(
+        default=serializers.CurrentUserDefault()
+    )
+
+    pay_status = serializers.CharField(read_only=True)
+    trade_no = serializers.CharField(read_only=True)
+    order_no = serializers.CharField(read_only=True)
+    pay_time = serializers.DateTimeField(read_only=True)
+    post_script = serializers.CharField(read_only=True)
+    pay_type = serializers.CharField(read_only=True)
+
+    # 生成订单
+    def generate_order_no(self):
+        random_ins = Random()
+        order_no = "{time_str}{user_id}{random_no}".format(time_str=time.strftime("%Y%m%d%H%M%S"),
+                                                           user_id=self.context["request"].user.id,
+                                                           random_no=random_ins.randint(10, 99))
+        return order_no
+
+    def validate(self, attrs):
+        attrs["order_no"] = self.generate_order_no()
+        return attrs
+
+    class Meta:
+        model = OrderInfo
+        fields = "__all__"
+
+
+class OrderGoodsSerializer(serializers.ModelSerializer):
+    """
+    订单货品序列化类
+    """
+    goods = GoodsSerializer(many=False)
+
+    class Meta:
+        model = OrderGoods
+        fields = '__all__'
+
+
+class OrderDetailSerializer(serializers.ModelSerializer):
+    """
+    订单明细序列化类
+    """
+    goods = OrderGoodsSerializer(many=True)
+
+    class Meta:
+        model = OrderInfo
+        fields = '__all__'
+
+
